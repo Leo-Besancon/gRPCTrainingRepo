@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package calculator;
+option go_package="calculator";
+
+message Addition {
+    int64 firstNum = 1;
+    int64 secondNum = 2;
+}
+
+message AdditionRequest {
+    Addition add = 1;
+}
+
+message AdditionResponse {
+    int64 result = 1;
+}
+
+service AdditionService{
+    rpc Add(AdditionRequest) returns (AdditionResponse) {};
+
+};
+
+message Decomposition {
+    int64 num = 1;
+}
+
+message DecompositionRequest {
+    Decomposition decomp = 1;
+}
+
+message DecompositionResponse {
+    int64 result = 1;
+}
+
+service DecompositionService{
+    rpc Decomp(DecompositionRequest) returns (stream DecompositionResponse) {};
+
+};
+
+message Average {
+    int64 num = 1;
+}
+
+message AverageRequest {
+    Average avg = 1;
+}
+
+message AverageResponse {
+    double result = 1;
+}
+
+service AverageService{
+    rpc Avg(stream AverageRequest) returns (AverageResponse) {};
+
+};
+
+
+
+message Maximum {
+    int64 num = 1;
+}
+
+message MaximumRequest {
+    Maximum max = 1;
+}
+
+message MaximumResponse {
+    int64 result = 1;
+}
+
+service MaximumService{
+    rpc Max(stream MaximumRequest) returns (stream MaximumResponse) {};
+
+};
